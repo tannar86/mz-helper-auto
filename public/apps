@@ -1,0 +1,22 @@
+
+async function fetchPlayer(id){
+  // Proovime Vercel /api/player, vajadusel Netlify /.netlify/functions/player
+  const urls = [ `/api/player?id=${encodeURIComponent(id)}`, `/.netlify/functions/player?id=${encodeURIComponent(id)}` ];
+  for(const u of urls){
+    try{ const r = await fetch(u); if(r.ok){ return await r.json(); } }catch(e){ /* next */ }
+  }
+  throw new Error('Backendi ei leitud.');
+}
+
+document.getElementById('loadBtn').onclick = async ()=>{
+  const id = document.getElementById('playerId').value.trim();
+  const status = document.getElementById('status');
+  const out = document.getElementById('output');
+  if(!id){ status.textContent = 'Sisesta ID'; return; }
+  status.textContent = 'Laen…'; out.textContent = '—';
+  try{
+    const data = await fetchPlayer(id);
+    out.textContent = JSON.stringify(data, null, 2);
+    status.textContent = 'OK';
+  }catch(e){ status.textContent = e.message; }
+};
