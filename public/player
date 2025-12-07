@@ -1,0 +1,29 @@
+
+export default async function handler(req, res){
+  const id = req.query.id;
+  const TEAM_ID = process.env.MZ_TEAM_ID;
+  const SEC = process.env.MZ_SECURITY_CODE;
+
+  if(!SEC || !TEAM_ID){
+    return res.status(501).json({
+      error: 'Puudub MZ_SECURITY_CODE või MZ_TEAM_ID (Project Settings → Environment Variables).',
+      hint: 'Vaata The Zone juhendit Team ID & Tools Security Code leidmiseks.'
+    });
+  }
+
+  try{
+    // TODO: Asenda päris MZ Tools päringuga (XML/JSON endpoint).
+    // Näide (pseudona): const r = await fetch(`${BASE}/player?id=${encodeURIComponent(id)}&team=${TEAM_ID}&sec=${SEC}`);
+    // Seejärel parseeri vastus ja tagasta.
+
+    // Ajutine stub — et testida toru kuni endpoint lisatud:
+    const stub = {
+      source: 'stub',
+      player: { id, name: 'Näidis', age: 20 },
+      skills: { Shooting: 7, Speed: 8, 'Ball Control': 7 }
+    };
+    return res.json(stub);
+  }catch(e){
+    return res.status(500).json({ error: e.message || 'Tundmatu viga' });
+  }
+}
