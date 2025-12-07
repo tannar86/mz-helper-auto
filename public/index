@@ -1,0 +1,28 @@
+
+<!DOCTYPE html>
+<html lang="et">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>MZ Helper – Täisautomaatne</title>
+  styles.css
+</head>
+<body>
+  <header><h1>MZ Helper</h1><p>Sisesta mängija ID ja lae andmed otse MZ Toolsist.</p></header>
+  <main>
+    <section class="panel">
+      <label>Mängija ID: <input id="playerId" placeholder="nt 123456"/></label>
+      <div class="buttons">
+        <button id="loadBtn">Lae</button>
+        <span id="status" class="hint"></span>
+      </div>
+    </section>
+    <section class="panel">
+      <h2>Tulemus</h2>
+      <pre id="output">—</pre>
+    </section>
+  </main>
+  <footer><p>© 2025 MZ Helper</p></footer>
+  app.js</script>
+</body>
+</html>
